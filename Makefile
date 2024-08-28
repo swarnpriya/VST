@@ -542,7 +542,7 @@ FLOYD_FILES= \
 
 PROGS32_FILES= \
   incr.v verif_incr.v \
-  bin_search.v list_dt.v verif_reverse.v verif_reverse2.v verif_reverse3.v verif_reverse_client.v verif_queue.v verif_queue2.v verif_packet_count.v verif_sumarray.v \
+  bin_search.v list_dt.v verif_reverse.v verif_reverse2.v verif_reverse3.v verif_reverse_client.v verif_queue.v verif_queue2.v verif_packet_count.v verif_packet_count_uint.v verif_sumarray.v \
   insertionsort.v reverse.v reverse_client.v queue.v packet_count.v sumarray.v message.v string.v object.v \
   revarray.v verif_revarray.v insertionsort.v append.v min.v min64.v int_or_ptr.v \
   dotprod.v strlib.v fib.v \
@@ -563,13 +563,13 @@ PROGS32_FILES= \
   verif_objectSelf.v verif_objectSelfFancy.v verif_objectSelfFancyOverriding.v
 # verif_insertion_sort.v
 
-C64_ORDINARY = reverse.c revarray.c packet_count.c sumarray.c append.c bin_search.c \
+C64_ORDINARY = reverse.c revarray.c packet_count.c packet_count_uint.c sumarray.c append.c bin_search.c \
     bst.c field_loadstore.c float.c object.c \
     global.c min.c min64.c nest2.c nest3.c \
     logical_compare.c fptr_cmp.c \
     strlib.c switch.c union.c message.c
 
-V64_ORDINARY = verif_reverse2.v verif_revarray.v verif_packet_count.v verif_sumarray.v \
+V64_ORDINARY = verif_reverse2.v verif_revarray.v verif_packet_count.v verif_packet_count_uint.v verif_sumarray.v \
     verif_append2.v verif_bin_search.v \
     verif_bst.v verif_field_loadstore.v verif_float.v verif_object.v \
     verif_global.v verif_min.v verif_min64.v verif_nest2.v verif_nest3.v \
@@ -654,7 +654,7 @@ AES_FILES = \
 # SINGLE_C_FILES are those to be clightgen'd individually with -normalize flag
 # LINKED_C_FILES are those that need to be clightgen'd in a batch with others
 
-SINGLE_C_FILES = reverse.c reverse_client.c revarray.c queue.c queue2.c message.c object.c insertionsort.c float.c global.c logical_compare.c nest2.c nest3.c ptr_compare.c load_demo.c store_demo.c dotprod.c string.c field_loadstore.c merge.c append.c bin_search.c bst.c bst_oo.c min.c min64.c switch.c funcptr.c floyd_tests.c cond.c packet_count.c sumarray.c sumarray2.c int_or_ptr.c union.c cast_test.c strlib.c tree.c fib.c loop_minus1.c libglob.c peel.c structcopy.c printf.c stackframe_demo.c rotate.c \
+SINGLE_C_FILES = reverse.c reverse_client.c revarray.c queue.c queue2.c message.c object.c insertionsort.c float.c global.c logical_compare.c nest2.c nest3.c ptr_compare.c load_demo.c store_demo.c dotprod.c string.c field_loadstore.c merge.c append.c bin_search.c bst.c bst_oo.c min.c min64.c switch.c funcptr.c floyd_tests.c cond.c packet_count.c packet_count_uint.c sumarray.c sumarray2.c int_or_ptr.c union.c cast_test.c strlib.c tree.c fib.c loop_minus1.c libglob.c peel.c structcopy.c printf.c stackframe_demo.c rotate.c \
   objectSelf.c objectSelfFancy.c objectSelfFancyOverriding.c io.c io_mem.c fptr_cmp.c
 
 

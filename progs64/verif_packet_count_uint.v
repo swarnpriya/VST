@@ -1,5 +1,5 @@
 Require Import VST.floyd.proofauto.
-Require Import VST.progs64.packet_count.
+Require Import VST.progs64.packet_count_uint.
 (* The next line is "boilerplate", always required after importing an AST. *)
 #[export] Instance CompSpecs : compspecs. make_compspecs prog. Defined.
 Definition Vprog : varspecs.  mk_varspecs prog. Defined.
@@ -21,15 +21,15 @@ Qed.
 
 Definition packet_count_spec : ident * funspec :=
 DECLARE _packet_count 
- WITH v : reptype' txdpmd, p : val, sh : share, gv: globals, c : int
+ WITH v : reptype' txdpmd, p : val, sh : share, gv: globals, c : Z
  PRE [ tptr txdpmd ]
   PROP (readable_share sh)
   PARAMS (p) GLOBALS (gv) 
-  SEP (data_at sh txdpmd (repinj _ v) p; data_at Ews tint (Vint c) (gv _counter))
+  SEP (data_at sh txdpmd (repinj _ v) p; data_at Ews tuint (Vint (Int.repr c)) (gv _counter))
  POST [ tint ]
   PROP () RETURN (Vint (Int.repr 2))
   SEP (data_at sh txdpmd (repinj _ v) p; 
-  data_at Ews tint (Vint (Int.add c (Int.repr 1))) (gv _counter)).
+  data_at Ews tuint (Vint (Int.add (Int.repr c) (Int.repr 1))) (gv _counter)).
 
 (*
 (* API spec for the packet_count.c program *)
@@ -67,9 +67,7 @@ Proof.
 start_function.
 forward.
 forward.
-+ entailer!. generalize dependent (Int.signed_range (Int.repr (Int.signed c + 1))). 
-  intro h. admit.
-+ forward. 
-Admitted.
+forward.
+Qed.
 
 
