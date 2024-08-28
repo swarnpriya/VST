@@ -18,7 +18,7 @@ Lemma data_at_isptr_xdp: forall v p,
 Proof.
 intros. entailer!.
 Qed.
-Search Int.add.
+
 Definition packet_count_spec : ident * funspec :=
 DECLARE _packet_count 
  WITH v : reptype' txdpmd, p : val, sh : share, gv: globals, c : int
@@ -28,7 +28,7 @@ DECLARE _packet_count
   SEP (data_at sh txdpmd (repinj _ v) p; data_at Ews tint (Vint c) (gv _counter))
  POST [ tint ]
   PROP () RETURN (Vint (Int.repr 2))
-  SEP (data_at sh txdpmd (repinj _ v) p; data_at Ews tint (Vint (Int.repr (Int.signed c + Int.signed (Int.repr 1)))) (gv _counter)).
+  SEP (data_at sh txdpmd (repinj _ v) p; data_at Ews tint (Vint (Int.add c (Int.repr 1))) (gv _counter)).
 
 (*
 (* API spec for the packet_count.c program *)
@@ -67,7 +67,7 @@ start_function.
 forward.
 forward.
 + entailer!. admit.
-+ forward. entailer!. admit.
++ forward. 
 Admitted.
 
 
